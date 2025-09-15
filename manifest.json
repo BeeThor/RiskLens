@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "RiskLens 风险透镜",
+  "version": "1.0.1",
+  "description": "专业的个人信息泄露风险分析工具，保护您的隐私安全",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://linux.do/*",
+    "https://*/*"
+  ],
+  "action": {
+    "default_title": "RiskLens 风险透镜"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://linux.do/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "persist_across_sessions": true
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; object-src 'none';"
+  }
+}
